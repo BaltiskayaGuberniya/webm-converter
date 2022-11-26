@@ -8,6 +8,9 @@ Optional parameters:
 4 - The output destination (by default it's the same as the input file destination, but with the extension changed to .webm)
 
 Example 1: webm.sh video.mp4 5
+
 This will produce a roughly 5mb webm from the video.mp4 file, and output it to video.webm
+
 Example 2: webm.sh video.mp4 5 2 out.webm 
+
 This will produce a roughly 5mb webm from the video.mp4 file, use 2 cores to process the output, and name it out.webm"
