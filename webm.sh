@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-input=$1
+input="$1"
 size=$2
 cpu=$3
 output=$4
 
-floatduration=$(ffprobe -i $input -show_entries format=duration -v quiet -of csv="p=0")
-duration=${floatduration%.*}
+duration=$(ffprobe -i "$input" -show_entries format=duration -v quiet -of csv="p=0" | egrep -o '^[^.]+') 
+
 
 while [ -z "$size" ] || [ -z "$input" ] || [ "$input" == "--help" ] || [ "$input" == "-help" ] ; do
   echo "Help:
@@ -25,12 +25,12 @@ fi
 if [ -z "$output" ]
 then 
 	output="${input%%.*}.webm"
-	echo $output
 fi
 
 
-ffmpeg -i $input -cpu-used $cpu -map 0:v -c libvpx-vp9 -pass 1 -f null -
 
-ffmpeg -i $input -cpu-used $cpu -map 0:v -map 0:a? -pass 2 -crf 30 -b:v $(($size*2**23 / $duration - 64*2**10)) $output
+ffmpeg -i "$input" -cpu-used $cpu -map 0:v -c libvpx-vp9 -pass 1 -f null -
+
+ffmpeg -i "$input" -cpu-used $cpu -map 0:v -map 0:a? -pass 2 -crf 30 -b:v $(($size*2**23 / $duration - 64*2**10)) $output
 
 rm -f ffmpeg2pass-0.log
