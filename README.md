@@ -13,4 +13,4 @@ This will produce a roughly 5mb webm from the video.mp4 file, and output it to v
 
 Example 2: webm.sh video.mp4 5 2 out.webm 
 
-This will produce a roughly 5mb webm from the video.mp4 file, use 2 cores to process the output, and name it out.webm"
+This will produce a roughly 5mb webm from the video.mp4 file, use 2 cores to process the output, and name it out.webm
